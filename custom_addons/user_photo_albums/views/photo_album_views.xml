@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Action for Photos in Album -->
+        <record id="action_photo_album_photos" model="ir.actions.act_window">
+            <field name="name">Album Photos</field>
+            <field name="res_model">photo.photo</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('album_id', '=', active_id)]</field>
+            <field name="context">{'default_album_id': active_id}</field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_photo_album_form" model="ir.ui.view">
+            <field name="name">photo.album.form</field>
+            <field name="model">photo.album</field>
+            <field name="arch" type="xml">
+                <form string="Photo Album">
+                    <header>
+                        <button name="action_toggle_public" type="object" string="Toggle Public Access" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(action_photo_album_photos)d" type="action" class="oe_stat_button" icon="fa-picture-o">
+                                <field name="photo_count" string="Photos" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <field name="cover_photo_id" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Album Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="date_created"/>
+                            </group>
+                            <group>
+                                <field name="is_public"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description" placeholder="Album Description..."/>
+                            </page>
+                            <page string="Photos">
+                                <field name="photo_ids">
+                                    <kanban>
+                                        <field name="id"/>
+                                        <field name="name"/>
+                                        <field name="image_small"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <div class="oe_kanban_global_click">
+                                                    <div class="o_kanban_image">
+                                                        <img t-att-src="kanban_image('photo.photo', 'image_small', record.id.raw_value)" alt="Photo"/>
+                                                    </div>
+                                                    <div class="oe_kanban_details">
+                                                        <strong class="o_kanban_record_title">
+                                                            <field name="name"/>
+                                                        </strong>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

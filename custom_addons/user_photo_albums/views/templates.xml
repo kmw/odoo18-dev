@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="portal_my_albums" name="My Photo Albums">
+            <t t-call="portal.portal_layout">
+                <div class="container">
+                    <h3>My Photo Albums</h3>
+                    <div class="row mt16">
+                        <t t-foreach="albums" t-as="album">
+                            <div class="col-md-4 mb16">
+                                <div class="card">
+                                    <div t-if="album.cover_photo_id" class="card-img-top">
+                                        <img t-att-src="'/web/image/photo.photo/%s/image_medium' % album.cover_photo_id.id"
+                                             class="img-fluid" alt="Album Cover"/>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <t t-esc="album.name"/>
+                                        </h5>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                Photos: <t t-esc="album.photo_count"/>
+                                            </small>
+                                        </p>
+                                        <a t-att-href="'/my/albums/%s' % album.id"
+                                           class="btn btn-primary">View Album</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="portal_my_album" name="Album">
+            <t t-call="portal.portal_layout">
+                <div class="container">
+                    <h3><t t-esc="album.name"/></h3>
+                    <div class="row mt16">
+                        <t t-foreach="album.photo_ids" t-as="photo">
+                            <div class="col-md-4 mb16">
+                                <div class="card">
+                                    <img t-att-src="'/web/image/photo.photo/%s/image_medium' % photo.id"
+                                         class="card-img-top" t-att-alt="photo.name"/>
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <t t-esc="photo.name"/>
+                                        </h5>
+                                        <p class="card-text" t-if="photo.description">
+                                            <t t-esc="photo.description"/>
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                Uploaded: <t t-esc="photo.date_uploaded"/>
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Action for Photos in Album -->
+        <record id="action_photo_album_photos" model="ir.actions.act_window">
+            <field name="name">Album Photos</field>
+            <field name="res_model">photo.photo</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('album_id', '=', active_id)]</field>
+            <field name="context">{'default_album_id': active_id}</field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_photo_album_form" model="ir.ui.view">
+            <field name="name">photo.album.form</field>
+            <field name="model">photo.album</field>
+            <field name="arch" type="xml">
+                <form string="Photo Album">
+                    <header>
+                        <button name="action_toggle_public" type="object" string="Toggle Public Access" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(action_photo_album_photos)d" type="action" class="oe_stat_button" icon="fa-picture-o">
+                                <field name="photo_count" string="Photos" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <!-- Rest of the form view remains the same -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_photo_album_user,photo.album user,model_photo_album,base.group_user,1,1,1,1
+access_photo_photo_user,photo.photo user,model_photo_photo,base.group_user,1,1,1,1
+access_photo_category_user,photo.category user,model_photo_category,base.group_user,1,1,1,0
+access_photo_tag_user,photo.tag user,model_photo_tag,base.group_user,1,1,1,1

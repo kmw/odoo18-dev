@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_professional_portfolio_public,professional.portfolio.public,model_professional_portfolio,,1,0,0,0
+access_professional_portfolio_user,professional.portfolio.user,model_professional_portfolio,base.group_user,1,1,1,1
+access_naics_code_public,naics.code.public,model_naics_code,,1,0,0,0
+access_naics_code_user,naics.code.user,model_naics_code,base.group_user,1,1,1,1

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_photo_category_form" model="ir.ui.view">
+            <field name="name">photo.category.form</field>
+            <field name="model">photo.category</field>
+            <field name="arch" type="xml">
+                <form string="Photo Category">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="parent_id"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description"/>
+                            </page>
+                            <page string="Child Categories">
+                                <field name="child_ids"/>
+                            </page>
+                            <page string="Photos">
+                                <field name="photo_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_photo_category_tree" model="ir.ui.view">
+            <field name="name">photo.category.tree</field>
+            <field name="model">photo.category</field>
+            <field name="arch" type="xml">
+                <tree string="Photo Categories">
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_photo_categories" model="ir.actions.act_window">
+            <field name="name">Categories</field>
+            <field name="res_model">photo.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_photo_categories"
+                  parent="menu_photo_albums_root"
+                  action="action_photo_categories"
+                  sequence="30"/>
+    </data>
+</odoo>
