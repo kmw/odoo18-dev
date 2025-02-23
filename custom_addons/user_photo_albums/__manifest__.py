@@ -8,7 +8,7 @@
     'license': 'LGPL-3',
     'depends': [
         'base',
-        'website',
+        'web',
         'portal',
         'mail',
     ],
@@ -21,9 +21,9 @@
         'views/templates.xml',
     ],
     'assets': {
-        'web.assets_frontend': [
-            'user_photo_albums/static/src/js/photo_upload.js',
-            'user_photo_albums/static/src/scss/photo_album.scss',
+        'web.assets_backend': [
+            '/user_photo_albums/static/src/scss/photo_album.scss',
+            '/user_photo_albums/static/src/js/photo_upload.js',
         ],
     },
     'installable': True,

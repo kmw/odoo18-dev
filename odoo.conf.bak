@@ -1,0 +1,11 @@
+[options]
+admin_passwd = $pbkdf2-sha512$600000$AoAQIsSYc855jzGG8F4rBQ$YG2/jaDmYcDumzfP3yVSHt5fysfD83PTbsK.6xbXaeMw4q1o7.OsQl9xY6J.cRDMvREkGL8E2d13HmpuwCwkTw
+db_host = localhost
+db_port = 5432
+db_user = odoo
+db_password = odoo
+addons_path = odoo/addons,custom_addons
+xmlrpc_port = 8069
+limit_time_real = 1200
+limit_time_cpu = 600
+

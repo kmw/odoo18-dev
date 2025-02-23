@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="naics_519120" model="naics.code">
+            <field name="name">Libraries and Archives</field>
+            <field name="code">519120</field>
+        </record>
+        <record id="naics_519130" model="naics.code">
+            <field name="name">Internet Publishing and Broadcasting and Web Search Portals</field>
+            <field name="code">519130</field>
+        </record>
+        <record id="naics_541512" model="naics.code">
+            <field name="name">Computer Systems Design Services</field>
+            <field name="code">541512</field>
+        </record>
+        <record id="naics_541513" model="naics.code">
+            <field name="name">Computer Facilities Management Services</field>
+            <field name="code">541513</field>
+        </record>
+        <record id="naics_541618" model="naics.code">
+            <field name="name">Other Management Consulting Services</field>
+            <field name="code">541618</field>
+        </record>
+    </data>
+</odoo>
